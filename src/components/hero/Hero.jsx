@@ -64,8 +64,8 @@ const Hero = () => {
             video creator
           </motion.p>
           <motion.div variants={awardVariants} className="awardList">
-            <motion.img variants={awardVariants} src="/icCon.png" alt="" />
-            <motion.img variants={awardVariants} src="/icWeb.png" alt="" />
+            <motion.img variants={awardVariants} src="/icCon.png" alt="icon" />
+            <motion.img variants={awardVariants} src="/icWeb.png" alt="iconW" />
             <motion.img variants={awardVariants} src="/icVDO.png" alt="" />
           </motion.div>
         </motion.div>
