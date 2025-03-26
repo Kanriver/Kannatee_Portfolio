@@ -1,7 +1,7 @@
 import "./contact.css";
 import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
-import { motion, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion"; // ✅ ใช้ framer-motion แทน motion/react
 import ContactSvg from "./ContactSvg";
 
 const listVariant = {
@@ -42,6 +42,7 @@ const Contact = () => {
         () => {
           setSuccess(true);
           setError(false);
+          form.current.reset(); // ✅ เคลียร์ฟอร์มหลังจากส่งสำเร็จ
         },
         (error) => {
           console.log(error);
@@ -54,10 +55,11 @@ const Contact = () => {
   const isInView = useInView(ref, { margin: "-200px" });
 
   return (
-    <div className="contact" ref={ref} onSubmit={sendEmail}>
+    <div className="contact" ref={ref}>
       <div className="cSection">
         <motion.form
           ref={form}
+          onSubmit={sendEmail}
           variants={listVariant}
           animate={isInView ? "animate" : "initial"}
         >
@@ -66,14 +68,14 @@ const Contact = () => {
           </motion.h1>
           <motion.div variants={listVariant} className="formItem">
             <label>Name</label>
-            <input type="text" name="user_username" placeholder="John Doe" />
+            <input type="text" name="to_name" placeholder="Your name" />
           </motion.div>
           <motion.div variants={listVariant} className="formItem">
             <label>Email</label>
             <input
               type="email"
               name="user_email"
-              placeholder="john@gmail.com"
+              placeholder="your@gmail.com"
             />
           </motion.div>
           <motion.div variants={listVariant} className="formItem">
@@ -84,14 +86,16 @@ const Contact = () => {
               placeholder="Write your message..."
             ></textarea>
           </motion.div>
-          <motion.button variants={listVariant} className="formButton">
+          <motion.button variants={listVariant} className="formButton" type="submit">
             Send
           </motion.button>
           {success && <span>Your message has been sent!</span>}
           {error && <span>Something went wrong!</span>}
         </motion.form>
       </div>
-      <div className="cSection"><ContactSvg/></div>
+      <div className="cSection">
+        <ContactSvg />
+      </div>
     </div>
   );
 };
