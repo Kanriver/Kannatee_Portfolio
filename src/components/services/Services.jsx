@@ -1,10 +1,10 @@
+import ArduinoModelContainer from "./arduino/ArduinoModelContainer";
 import ComputerModelContainer from "./computer/ComputerModelContainer";
-import ConsoleModelContainer from "./console/ConsoleModelContainer";
 import Counter from "./Counter";
-import MugModelContainer from "./mug/MugModelContainer";
 import "./services.css";
 import { motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
+import GoproModelContainer from "./gopro/GoproModelContainer";
 
 const textVariants = {
   initial: {
@@ -42,19 +42,19 @@ const services = [
     id: 1,
     img: "/service1.png",
     title: "Web Development",
-    counter: 35,
+    counter: 5,
   },
   {
     id: 2,
     img: "/service2.png",
-    title: "Product Design",
-    counter: 23,
+    title: "Electronic",
+    counter: 10,
   },
   {
     id: 3,
     img: "/service3.png",
-    title: "Branding",
-    counter: 46,
+    title: "VDO",
+    counter: 0,
   },
 ];
 
@@ -70,7 +70,7 @@ const Services = () => {
           animate={isInView ? "animate" : "initial"}
           className="sTitle"
         >
-          How do I help?
+          My experience
         </motion.h1>
         <motion.div
           variants={listVariants}
@@ -95,17 +95,17 @@ const Services = () => {
           ))}
         </motion.div>
         <div className="counterList">
-          <Counter from={0} to={104} text="Projects Completed" />
-          <Counter from={0} to={72} text="Happy Clients" />
+          <Counter from={0} to={15} text="Projects Completed" />
+          <Counter from={0} to={14} text="Happy Clients" />
         </div>
       </div>
       <div className="sSection right">
         {currentServiceId === 1 ? (
           <ComputerModelContainer />
         ) : currentServiceId === 2 ? (
-          <MugModelContainer />
+          <ArduinoModelContainer/>
         ) : (
-          <ConsoleModelContainer />
+          <GoproModelContainer />
         )}
       </div>
     </div>
