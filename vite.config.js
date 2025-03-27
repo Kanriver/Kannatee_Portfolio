@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // base: "/Kannatee_Portfolio",
+  base: process.env.VITE.BASE.PATH || "/Kannatee_Portfolio",
 })
