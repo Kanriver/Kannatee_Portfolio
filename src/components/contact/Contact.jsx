@@ -28,29 +28,30 @@ const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-
+    console.log("Sending email...");
+  
     emailjs
       .sendForm(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
-        e.target,
-        {
-          publicKey: import.meta.env.VITE_PUBLIC_KEY,
-        }
+        form.current,
+        import.meta.env.VITE_PUBLIC_KEY
       )
       .then(
-        () => {
+        (response) => {
+          console.log("Success!", response);
           setSuccess(true);
           setError(false);
-          form.current.reset(); // ✅ เคลียร์ฟอร์มหลังจากส่งสำเร็จ
+          form.current.reset();
         },
         (error) => {
-          console.log(error);
+          console.error("Error:", error);
           setError(true);
           setSuccess(false);
         }
       );
   };
+  
 
   const isInView = useInView(ref, { margin: "-200px" });
 
